@@ -1,0 +1,16 @@
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: trigger-ce
+  namespace: nats-test
+spec:
+  broker: nats-broker
+  filter:
+    attributes:
+      type: dev.knative.foo.lala
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: cloudevents-player
+      namespace: nats-test

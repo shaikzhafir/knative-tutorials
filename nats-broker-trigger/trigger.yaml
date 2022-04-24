@@ -1,0 +1,16 @@
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: trigger-1
+  namespace: nats-test
+spec:
+  broker: nats-broker
+  filter:
+    attributes:
+      type: dev.knative.foo.bar
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: event-display
+      namespace: nats-test
